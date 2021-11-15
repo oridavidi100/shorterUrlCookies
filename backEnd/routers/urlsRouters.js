@@ -1,15 +1,15 @@
 const { doesNotMatch } = require('assert');
 const express = require('express');
 const router = express.Router();
-const fs=require('fs')
-const path = require("path");
-const moment=require("moment")
-const {createNewShortUrl,getUrl,statistics}=require('../controllers/Urls')
-const {createNewUser,login} = require ('../controllers/Users')
+const fs = require('fs');
+const path = require('path');
+const moment = require('moment');
+const { createNewShortUrl, getUrl, statistics } = require('../controllers/Urls');
+const { createNewUser, login } = require('../controllers/Users');
 
-const baseUrl="http://localhost:3000/api"
+const baseUrl = 'http://localhost:3000/api';
 
-router.post("/",createNewShortUrl)
+router.post('/', createNewShortUrl);
 // (req,res)=>{
 //     console.log("hello")
 //     const longUrl=`${req.body.longUrl}`;
@@ -38,11 +38,8 @@ router.post("/",createNewShortUrl)
 
 // })
 
-
-
-
-router.get("/:id/:userName", getUrl)
-// (req, res) => { 
+router.get('/:id/:userName', getUrl);
+// (req, res) => {
 //     console.log("hello")
 //     let userName=req.params.userName
 //     if (userName==="") {userName="DB"}
@@ -55,9 +52,7 @@ router.get("/:id/:userName", getUrl)
 //     res.end()
 //})
 
-
-
-router.get("/statistic/:id/:userName" ,statistics)
+router.get('/statistic/:id/:userName', statistics);
 // (req,res)=>{
 //     console.log("hello")
 //     let  userName=req.params.userName
@@ -68,9 +63,7 @@ router.get("/statistic/:id/:userName" ,statistics)
 //     res.send(data)
 // })
 
-router.post('/newUser',createNewUser)
-router.post('/login',login)
-
+router.post('/newUser', createNewUser);
+router.post('/login', login);
 
 module.exports = router;
-
