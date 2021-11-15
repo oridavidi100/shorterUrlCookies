@@ -12,15 +12,15 @@ function isValidHttpUrl(string) {
   }
 
 function urlHandler (req, res, next) {
-    if(req.method==="POST"){
-    const longUrl=`${req.body.longUrl}`;
-    if(!longUrl) {
-        throw {"status": 401, "messege": "url missing"};
+    if(req.method === "POST"){
+        const longUrl=`${req.body.longUrl}`;
+        if (isValidHttpUrl(longUrl) === false && !req.body.userName) {
+            console.log("ll")
+            if(isValidHttpUrl(longUrl) === false) {
+            throw {"status": 401, "messege": "Please, provide a valid url"};
+            }
+        }
     }
-    if(isValidHttpUrl(longUrl)===false) {
-        throw {"status": 401, "messege": "Please, provide a valid url"};
-    }
-  }
-  next(); 
+    next(); 
 }
 module.exports = {urlHandler}

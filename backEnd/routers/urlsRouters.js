@@ -4,7 +4,8 @@ const router = express.Router();
 const fs=require('fs')
 const path = require("path");
 const moment=require("moment")
-const {createNewShortUrl}=require('../controller')
+const {createNewShortUrl,getUrl,statistics}=require('../controllers/Urls')
+const {createNewUser,login} = require ('../controllers/Users')
 
 const baseUrl="http://localhost:3000/api"
 
@@ -40,32 +41,35 @@ router.post("/",createNewShortUrl)
 
 
 
-router.get("/:id/:userName", (req, res) => { 
-    console.log("hello")
-    let userName=req.params.userName
-    if (userName==="") {userName="DB"}
-    const id=req.params.id
-    // console.log(dataBase[id].longUrl)
-    let dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
-    dataBase[id]["numOfEntr"]+=1
-    fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
-    res.status(301).header("location", dataBase[id].longUrl);
-    res.end()
-})
+router.get("/:id/:userName", getUrl)
+// (req, res) => { 
+//     console.log("hello")
+//     let userName=req.params.userName
+//     if (userName==="") {userName="DB"}
+//     const id=req.params.id
+//     // console.log(dataBase[id].longUrl)
+//     let dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
+//     dataBase[id]["numOfEntr"]+=1
+//     fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
+//     res.status(301).header("location", dataBase[id].longUrl);
+//     res.end()
+//})
 
 
 
-router.get("/statistic/:id/:userName" ,(req,res)=>{
-    console.log("hello")
-    let  userName=req.params.userName
-    if (userName==="") userName="DB"
-    const id=req.params.id;
-    let dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
-    let data={"date":dataBase[id]["date"],"redirectCount":dataBase[id]["numOfEntr"]}
-    res.send(data)
-})
+router.get("/statistic/:id/:userName" ,statistics)
+// (req,res)=>{
+//     console.log("hello")
+//     let  userName=req.params.userName
+//     if (userName==="") userName="DB"
+//     const id=req.params.id;
+//     let dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
+//     let data={"date":dataBase[id]["date"],"redirectCount":dataBase[id]["numOfEntr"]}
+//     res.send(data)
+// })
 
-
+router.post('/newUser',createNewUser)
+router.post('/login',login)
 
 
 module.exports = router;

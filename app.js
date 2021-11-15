@@ -5,19 +5,22 @@ const app = express();
 const mongoose=require('mongoose')
 const PORT = process.env.PORT || 3000;
 require("dotenv").config();
+const cookieParser = require('cookie-parser')
+const secret = process.env.SECRET_ACCESS_TOKEN;
 
 const mongo = process.env.DATABASE;
 
 mongoose
-    .connect(mongo)
-    .then((result) => {
-        console.log("connected to MongoDB");
-    })
-    .catch((error) => {
-        console.log("error connecting to MongoDB:", error.message);
-    });
+.connect(mongo)
+.then((result) => {
+  console.log("connected to MongoDB");
+})
+.catch((error) => {
+  console.log("error connecting to MongoDB:", error.message);
+});
 
 
+app.use(cookieParser())
 app.use(cors());
 app.use(cors({
   origin: "*"

@@ -2,7 +2,6 @@
 
 <html>
   <head>
-    <span>URL Shortener &#9986; </span>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Heebo&family=Oxygen&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
@@ -10,11 +9,17 @@
   </head>
 
   <body>
+    <ul id="navbar">
+      <li><a id="log"><span>URL Shortener &#9986; </span></a></li>
+      <li><a href="#longurl">Home</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/URL" target="_black">What is URL?</a></li>
+     
+      <li style="float:right"><a class="active" id="login-nav-btn" >Log in</a></li>
+      <li style="float:right"><a class="active" id="signUp-nav-btn" >Sign up</a></li>
+    </ul>
     <h1 id="header">shorter url longer life</h1>
     <main>
       <section>
-        <!-- <form action="api/shorturl/new" method="POST"> -->
-          <!-- <fieldset> -->
             <input type="text" id="userName" placeholder="user name"><br>
             <label for="url_input">URL:</label>
             <input
@@ -33,12 +38,33 @@
               <button type="button" id="statistic">statistic</button>
               <p id="data"></p>
             </div>
-          <!-- </fieldset> -->
-        <!-- </form> -->
-            <div>
-              <p></p>
-              <h4></h4>
+          <!-- login-->
+          <div class="login-form">
+            <div class="grad"></div>
+            <div class="header">
+              <div>Log<span> In</span></div>
             </div>
+            <br>
+              <div class="login">
+                  <input type="text" placeholder="username" name="user" id="userNamelogin"><br>
+                  <input type="password" placeholder="password" name="password" id="loginPassWord"><br>
+                  <input type="button" value="Login" id="login-btn">
+              </div>
+            </div>
+
+            <!-- sign up -->
+            <div class="signUp-form">
+              <div class="gradsignUp"></div>
+              <div class="headersignUp">
+                <div>sign<span>Up</span></div>
+              </div>
+              <br>
+                <div class="signUp">
+                    <input type="text" placeholder="username" id="signUpUserName" name="user" id="userNamesignUp"><br>
+                    <input type="password" placeholder="password" id="signUpPassWord" name="password"><br>
+                    <input type="button" value="signUp" id="signUp-btn">
+                </div>
+              </div>
       </section>
     </main>
     <footer>

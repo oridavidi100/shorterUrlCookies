@@ -1,4 +1,3 @@
-
 import "./styles/public/style.css"
 document.getElementById("submit").addEventListener("click",shortApi)
 document.getElementById("statistic").addEventListener("click",showData)
@@ -56,4 +55,63 @@ function copyTextfunction() {
     console.log(shortUrl)
     const url = copyText.split('copy')[0];
     navigator.clipboard.writeText(url);
-  }
+}
+
+
+
+
+//login
+document.getElementById("login-nav-btn").addEventListener("click",()=>{
+    const loginBar=document.querySelector(".login-form")
+        loginBar.style.display="flex"
+})
+const loginBtn = document.getElementById('login-btn')
+loginBtn.addEventListener('click', async () => {
+    const userName=document.getElementById("userNamelogin").value
+    const passWord=document.getElementById("loginPassWord").value
+    console.log(userName,passWord)
+    const loginform = document.querySelector('.login-form');
+    loginform.style.display = 'none';
+    try{
+        let response = await axios.post('api/login',{
+            "userName" : userName,
+            "passWord" : passWord
+        })
+        console.log(response)
+
+    }
+    catch(error){
+        console.log(error)
+    }
+  });
+
+
+
+
+
+//signUp
+
+  document.getElementById("signUp-nav-btn").addEventListener("click",()=>{
+    const signUpBar=document.querySelector(".signUp-form")
+    signUpBar.style.display="flex"
+})
+
+const signUpBtn = document.getElementById("signUp-btn")
+signUpBtn.addEventListener('click', async() => {
+    const userName=document.getElementById("signUpUserName").value
+    const passWord=document.getElementById("signUpPassWord").value
+    console.log(userName,passWord)
+    const signUpform = document.querySelector(".signUp-form");
+    signUpform.style.display = 'none';
+    try{
+        const response = await axios.post('api/newUser',{
+            "userName":userName,
+            "passWord":passWord
+        }) 
+        console.log("הצליח ")
+        console.log(response)
+    }
+    catch{
+
+    }
+  });
