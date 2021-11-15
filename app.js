@@ -2,7 +2,21 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const mongoose=require('mongoose')
 const PORT = process.env.PORT || 3000;
+require("dotenv").config();
+
+const mongo = process.env.DATABASE;
+
+mongoose
+    .connect(mongo)
+    .then((result) => {
+        console.log("connected to MongoDB");
+    })
+    .catch((error) => {
+        console.log("error connecting to MongoDB:", error.message);
+    });
+
 
 app.use(cors());
 app.use(cors({

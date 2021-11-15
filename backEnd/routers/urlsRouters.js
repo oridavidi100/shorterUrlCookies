@@ -4,43 +4,48 @@ const router = express.Router();
 const fs=require('fs')
 const path = require("path");
 const moment=require("moment")
+const {createNewShortUrl}=require('../controller')
 
-const baseUrl="https://shorturl-ori.herokuapp.com/api"
+const baseUrl="http://localhost:3000/api"
 
-router.post("/",(req,res)=>{
-    const longUrl=`${req.body.longUrl}`;
-    let  userName=req.body.userName
-     if (userName==="") userName="DB"
-    const iD='_' + Math.random().toString(36).substr(2, 9)
-    const shortUrl=baseUrl +"/"+ iD;
-    if (fs.existsSync(`./backEnd/${userName}.json`)) {
-        dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
-        for (let key in dataBase){
-            if (dataBase[key].longUrl===longUrl){
-                return res.send({"shortUrl":`${baseUrl}/${key}/${userName}`,"id":key})
-            }
-        }
-        dataBase[iD] ={"longUrl":longUrl,"date":moment().format('LL'),"numOfEntr":0};
-        fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
-        res.send({"shortUrl":`${shortUrl}/${userName}`,"id":iD});
-    }
-    else {
-        fs.writeFileSync(`./backEnd/${userName}.json`, "{}");
-        const dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
-        dataBase[iD] ={"longUrl":longUrl,"date":moment().format('LL'),"numOfEntr":0};
-        fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
-        res.send({"shortUrl":`${shortUrl}/${userName}`,"id":iD});
-      }
+router.post("/",createNewShortUrl)
+// (req,res)=>{
+//     console.log("hello")
+//     const longUrl=`${req.body.longUrl}`;
+//     let  userName=req.body.userName
+//      if (userName==="") userName="DB"
+//     const iD='_' + Math.random().toString(36).substr(2, 9)
+//     const shortUrl=baseUrl +"/"+ iD;
+//     if (fs.existsSync(`./backEnd/${userName}.json`)) {
+//         dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
+//         for (let key in dataBase){
+//             if (dataBase[key].longUrl===longUrl){
+//                 return res.send({"shortUrl":`${baseUrl}/${key}/${userName}`,"id":key})
+//             }
+//         }
+//         dataBase[iD] ={"longUrl":longUrl,"date":moment().format('LL'),"numOfEntr":0};
+//         fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
+//         res.send({"shortUrl":`${shortUrl}/${userName}`,"id":iD});
+//     }
+//     else {
+//         fs.writeFileSync(`./backEnd/${userName}.json`, "{}");
+//         const dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
+//         dataBase[iD] ={"longUrl":longUrl,"date":moment().format('LL'),"numOfEntr":0};
+//         fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
+//         res.send({"shortUrl":`${shortUrl}/${userName}`,"id":iD});
+//       }
 
-})
+// })
 
 
 
 
 router.get("/:id/:userName", (req, res) => { 
+    console.log("hello")
     let userName=req.params.userName
-    if (userName==="") userName="DB"
+    if (userName==="") {userName="DB"}
     const id=req.params.id
+    // console.log(dataBase[id].longUrl)
     let dataBase = JSON.parse(fs.readFileSync(`./backEnd/${userName}.json`, "utf-8"));
     dataBase[id]["numOfEntr"]+=1
     fs.writeFileSync(`./backEnd/${userName}.json`, JSON.stringify(dataBase));
@@ -51,6 +56,7 @@ router.get("/:id/:userName", (req, res) => {
 
 
 router.get("/statistic/:id/:userName" ,(req,res)=>{
+    console.log("hello")
     let  userName=req.params.userName
     if (userName==="") userName="DB"
     const id=req.params.id;
