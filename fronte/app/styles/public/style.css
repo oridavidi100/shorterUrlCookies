@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+/* #shorter{
+  width: 5em;
+} */
+input{
+  border: 0.1em solid;
+  border-radius: 1em;
+
+  text-align: center;
+  font-size: 0.35em;
+  font-style: italic;
+  letter-spacing: 0.05em;
+
+  transition: all .5s ease-in-out;
+  /* background-color: #b3ecf0; */
+  min-width: 300px;
+}
+body {
+  font-size:37px;
+  color: #222;
+  text-align: center;
+  line-height: 1.4em;
+  background-color: #d3cbb1;
+  font-family: 'Dongle', sans-serif;
+}
+
+button{
+  color: white;
+  font-weight: bold;
+  font-size:0.7854rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  /* padding: 10px 23px; */
+  width: 5.9em;
+  height: 3.9em;
+  background-color: #182e9b;
+  transition: transform 500ms;
+  /* background-position 800ms $ease-in-out-back;
+  box-shadow 500ms linear; */
+  background-image: url('data:image/svg+xml;utf8,<?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 width="1296px" height="768px" viewBox="0 0 1296 768" enable-background="new 0 0 1296 768" xml:space="preserve"><g><polygon fill="#8694D1" points="766.6,1.2 -0.2,768 200.7,768 967.5,1.2 	"/></g><g><polygon fill="#8694D1" points="1094.8,1.2 328,768 528.9,768 1295.7,1.2 	"/></g></svg>'); 
+  background-size: contain;
+  background-position: -200px center;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 35%;
+}
+  button:hover{
+    transform: scale(1.1);
+    background-position: -60px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+  button:active{
+    transform: scale(1);
+    background-position: 500px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  }
+
+
+section{
+  background-color:   blanchedalmond;
+}
+
+main {
+  padding: 0;
+  margin-top: 40px;
+}
+
+h3 {
+  margin-top: 30px;
+}
+
+
+
+.user-stories li {
+  margin-bottom: 1em;
+}
+
+a {
+  color: #2574a9;
+}
+
+form {
+  margin: 10px auto;
+  padding: 20px;
+  max-width: 600px;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input {
+  padding: 5px;
+}
+
+input[type='text'] {
+  width: 220px;
+  text-align: center;
+}
+
+footer {
+  background-color: rgb(177, 214, 206);
+  /* margin-right: 15%;
+  margin-left: 15%; */
+  width: 100%;
+  position: fixed;
+  /* top:100%; */
+  bottom:0%;
+  font-family: "Poppins", sans-serif;
+  height: 70px;
+  font-size: 15px;
+  padding-bottom: 2.23em;
+}
+
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+.wrapper {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .icon {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 16px;
+  margin-top: 5px;
+  margin-left: 25px;
+  width: 15px;
+  height: 10px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  color: #222;
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 19.5px;
+  background-color: #ffffff;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #ffffff;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -75px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+
+#short{
+  position: block;
+  width: 50%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  padding:20px;
+  text-align: center;
+  background-color:blanchedalmond;
+  display:none;
+}
+@media screen {
+
+}
